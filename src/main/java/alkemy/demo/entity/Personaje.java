@@ -1,37 +1,36 @@
 
-package alkemy.demo.entidades;
+package alkemy.demo.entity;
 
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data //get y set
+@AllArgsConstructor // constructor completo
+@NoArgsConstructor // constructtor vacio
 @Entity
-public class Pelicula {
-    
+public class Personaje {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    String id;
-    String titulo;
-    String imagen;
+    private String id;
     
-    @Temporal(TemporalType.DATE)
-    private Date creado;
+    private String nombre;
+    private String hitoria;
+    private String foto;    
     
-    Integer calificacion;
+    private Integer edad;
+    
+    private Double peso;    
     
     @OneToMany
-    List<Personaje> personajes;
+    private List<Pelicula> peliculas;
+    
 }

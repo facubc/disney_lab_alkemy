@@ -1,5 +1,4 @@
-
-package alkemy.demo.entidades;
+package alkemy.demo.entity;
 
 import java.util.List;
 import javax.persistence.Entity;
@@ -11,26 +10,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-@Data //get y set
-@AllArgsConstructor // constructor completo
-@NoArgsConstructor // constructtor vacio
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Personaje {
+public class Genero {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    String id;
+    private String id;
     
-    String nombre;
-    String hitoria;
-    String foto;    
-    
-    Integer edad;
-    
-    Double peso;    
+    private String nombre;
+    private String imagen;
     
     @OneToMany
-    List<Pelicula> peliculas;
-    
+    private List<Pelicula> peliculas;
+
 }
