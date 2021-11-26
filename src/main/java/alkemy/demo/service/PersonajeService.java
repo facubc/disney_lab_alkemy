@@ -31,4 +31,8 @@ public class PersonajeService {
         return resultado;
     }
     
+    public void borrarPersonaje(String id){
+        personajeRepository.deleteById(id);
+    }
+    
 }
