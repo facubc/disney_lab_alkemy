@@ -1,4 +1,3 @@
-
 package alkemy.demo.mapper;
 
 import alkemy.demo.DTO.PeliculaDTO;
@@ -10,20 +9,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PeliculaMapper {
-    
-    
-    //transforma DTO a Entidad
-    public Pelicula peliculaDTO2Entity(PeliculaDTO dto){
+
+    public Pelicula peliculaDTO2Entity(PeliculaDTO dto) {
         Pelicula pelicula = new Pelicula();
         pelicula.setTitulo(dto.getTitulo());
         pelicula.setImagen(dto.getImagen());
         pelicula.setCalificacion(dto.getCalificacion());
         pelicula.setCreado(dto.getCreado());
         pelicula.setPersonajes(dto.getPersonajes());
-        return pelicula;        
+        return pelicula;
     }
-    
-    public PeliculaDTO peliculaEntity2DTO(Pelicula pelicula){
+
+    public PeliculaDTO peliculaEntity2DTO(Pelicula pelicula) {
         PeliculaDTO dto = new PeliculaDTO();
         dto.setId(pelicula.getId());
         dto.setTitulo(pelicula.getTitulo());
@@ -33,22 +30,21 @@ public class PeliculaMapper {
         dto.setPersonajes(pelicula.getPersonajes());
         return dto;
     }
-    
-    public PeliculaTinyDTO peliculEntity2TinyDTO(Pelicula pelicula){
-        PeliculaTinyDTO dto = new PeliculaTinyDTO();        
+
+    public PeliculaTinyDTO peliculEntity2TinyDTO(Pelicula pelicula) {
+        PeliculaTinyDTO dto = new PeliculaTinyDTO();
         dto.setTitulo(pelicula.getTitulo());
         dto.setImagen(pelicula.getImagen());
         dto.setCreado(pelicula.getCreado());
         return dto;
     }
-    
-    //todo para modificar a list
-    public List<PeliculaTinyDTO> peliculaEntity2DTOList(List<Pelicula> peliculas){
+
+    public List<PeliculaTinyDTO> peliculaEntity2DTOList(List<Pelicula> peliculas) {
         List<PeliculaTinyDTO> dtoList = new ArrayList<>();
         for (Pelicula pelicula : peliculas) {
             dtoList.add(peliculEntity2TinyDTO(pelicula));
         }
         return dtoList;
     }
-    
+
 }

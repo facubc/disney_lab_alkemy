@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PeliculaService {
@@ -24,6 +25,7 @@ public class PeliculaService {
     @Autowired
     private PeliculaMapper peliculaMapper;
     
+    @Transactional
     public PeliculaDTO save(PeliculaDTO dto){
         Pelicula pelicula = peliculaMapper.peliculaDTO2Entity(dto);
         Pelicula peliculaGuardada = peliculaRepository.save(pelicula);
@@ -31,12 +33,14 @@ public class PeliculaService {
         return resultado;
     }
     
+    @Transactional(readOnly = true)
     public List<PeliculaTinyDTO> findAll(){
         List<Pelicula> peliculas = peliculaRepository.findAll();
         List<PeliculaTinyDTO> resultado = peliculaMapper.peliculaEntity2DTOList(peliculas);
         return resultado;
     }
     
+    @Transactional
     public PeliculaDTO update(String id, PeliculaDTO dto) {
         Optional<Pelicula> respuesta = peliculaRepository.findById(id);
         PeliculaDTO resultado = new PeliculaDTO();
@@ -53,6 +57,7 @@ public class PeliculaService {
         return resultado;
     }
     
+    @Transactional
     public void deleteById(String id){
         peliculaRepository.deleteById(id);
     }

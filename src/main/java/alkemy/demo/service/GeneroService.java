@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GeneroService {
@@ -18,6 +19,7 @@ public class GeneroService {
     @Autowired
     private GeneroRepository generoRepository;
 
+    @Transactional
     public GeneroDTO save(GeneroDTO dto) {
         Genero genero = generoMapper.generoDTO2Entity(dto);
         Genero generoGuardado = generoRepository.save(genero);
@@ -25,12 +27,14 @@ public class GeneroService {
         return resultado;
     }
 
+    @Transactional(readOnly = true)
     public List<GeneroDTO> findAll() {
         List<Genero> generos = generoRepository.findAll();
         List<GeneroDTO> resultado = generoMapper.generoEntity2DTOList(generos);
         return resultado;
     }
 
+    @Transactional
     public GeneroDTO update(String id, GeneroDTO dto) {
         Optional<Genero> respuesta = generoRepository.findById(id);
         GeneroDTO resultado = new GeneroDTO();
@@ -45,6 +49,7 @@ public class GeneroService {
         return resultado;
     }
 
+    @Transactional
     public void deleteById(String id) {
         generoRepository.deleteById(id);
     }

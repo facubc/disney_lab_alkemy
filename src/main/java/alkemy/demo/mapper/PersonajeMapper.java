@@ -1,4 +1,3 @@
-
 package alkemy.demo.mapper;
 
 import alkemy.demo.DTO.PersonajeDTO;
@@ -8,17 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class PersonajeMapper {
-    
-    /**
-    * personajeDTO2Entity 
-    * transforma DTO a Entidad    
-    * @param dto recibe Objeto de tipo DTO
-    * @return devuelve Objeto de tipo Personaje
-    */
-    public Personaje personajeDTO2Entity(PersonajeDTO dto){
+
+    public Personaje personajeDTO2Entity(PersonajeDTO dto) {
         Personaje personaje = new Personaje();
         personaje.setNombre(dto.getNombre());
         personaje.setHitoria(dto.getHitoria());
@@ -28,10 +20,8 @@ public class PersonajeMapper {
         personaje.setPeliculas(dto.getPeliculas());
         return personaje;
     }
-    
-    
-    //transforma Entidad a DTO
-    public PersonajeDTO personajeEntity2DTO(Personaje personaje){
+
+    public PersonajeDTO personajeEntity2DTO(Personaje personaje) {
         PersonajeDTO dto = new PersonajeDTO();
         dto.setId(personaje.getId());
         dto.setNombre(personaje.getNombre());
@@ -42,21 +32,20 @@ public class PersonajeMapper {
         dto.setPeliculas(personaje.getPeliculas());
         return dto;
     }
-    
-    public PersonajeTinyDTO personajeEntity2TinyDTO(Personaje personaje){
-        PersonajeTinyDTO dto = new PersonajeTinyDTO();        
-        dto.setNombre(personaje.getNombre());        
-        dto.setFoto(personaje.getFoto());        
+
+    public PersonajeTinyDTO personajeEntity2TinyDTO(Personaje personaje) {
+        PersonajeTinyDTO dto = new PersonajeTinyDTO();
+        dto.setNombre(personaje.getNombre());
+        dto.setFoto(personaje.getFoto());
         return dto;
     }
-    
-    //devuelve lista de DTO
-    public List<PersonajeTinyDTO> personajeEntity2DTOList(List<Personaje> personajes){
+
+    public List<PersonajeTinyDTO> personajeEntity2DTOList(List<Personaje> personajes) {
         List<PersonajeTinyDTO> dtoList = new ArrayList<>();
         for (Personaje aux : personajes) {
             dtoList.add(personajeEntity2TinyDTO(aux));
         }
         return dtoList;
     }
-    
+
 }
