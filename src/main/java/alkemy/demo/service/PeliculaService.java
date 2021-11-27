@@ -6,10 +6,12 @@
 package alkemy.demo.service;
 
 import alkemy.demo.DTO.PeliculaDTO;
+import alkemy.demo.DTO.PeliculaTinyDTO;
 import alkemy.demo.entity.Pelicula;
 import alkemy.demo.mapper.PeliculaMapper;
 import alkemy.demo.repository.PeliculaRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,20 +24,36 @@ public class PeliculaService {
     @Autowired
     private PeliculaMapper peliculaMapper;
     
-    public PeliculaDTO registar(PeliculaDTO dto){
+    public PeliculaDTO save(PeliculaDTO dto){
         Pelicula pelicula = peliculaMapper.peliculaDTO2Entity(dto);
         Pelicula peliculaGuardada = peliculaRepository.save(pelicula);
         PeliculaDTO resultado = peliculaMapper.peliculaEntity2DTO(peliculaGuardada);
         return resultado;
     }
     
-    public List<PeliculaDTO> listarTodo(){
+    public List<PeliculaTinyDTO> findAll(){
         List<Pelicula> peliculas = peliculaRepository.findAll();
-        List<PeliculaDTO> resultado = peliculaMapper.peliculaEntity2DTOList(peliculas);
+        List<PeliculaTinyDTO> resultado = peliculaMapper.peliculaEntity2DTOList(peliculas);
         return resultado;
     }
     
-    public void borrarPelicula(String id){
+    public PeliculaDTO update(String id, PeliculaDTO dto) {
+        Optional<Pelicula> respuesta = peliculaRepository.findById(id);
+        PeliculaDTO resultado = new PeliculaDTO();
+        if (respuesta.isPresent()) {
+            Pelicula pelicula = respuesta.get();
+            pelicula.setTitulo(dto.getTitulo());
+            pelicula.setImagen(dto.getImagen());
+            pelicula.setCreado(dto.getCreado());
+            pelicula.setCalificacion(dto.getCalificacion());
+            pelicula.setPersonajes(dto.getPersonajes());
+            Pelicula peliculaModificada = peliculaRepository.save(pelicula);
+            resultado = peliculaMapper.peliculaEntity2DTO(peliculaModificada);
+        }        
+        return resultado;
+    }
+    
+    public void deleteById(String id){
         peliculaRepository.deleteById(id);
     }
     

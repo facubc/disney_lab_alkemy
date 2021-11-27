@@ -2,6 +2,7 @@
 package alkemy.demo.mapper;
 
 import alkemy.demo.DTO.PersonajeDTO;
+import alkemy.demo.DTO.PersonajeTinyDTO;
 import alkemy.demo.entity.Personaje;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +43,18 @@ public class PersonajeMapper {
         return dto;
     }
     
+    public PersonajeTinyDTO personajeEntity2TinyDTO(Personaje personaje){
+        PersonajeTinyDTO dto = new PersonajeTinyDTO();        
+        dto.setNombre(personaje.getNombre());        
+        dto.setFoto(personaje.getFoto());        
+        return dto;
+    }
+    
     //devuelve lista de DTO
-    public List<PersonajeDTO> personajeEntity2DTOList(List<Personaje> personajes){
-        List<PersonajeDTO> dtoList = new ArrayList<>();
+    public List<PersonajeTinyDTO> personajeEntity2DTOList(List<Personaje> personajes){
+        List<PersonajeTinyDTO> dtoList = new ArrayList<>();
         for (Personaje aux : personajes) {
-            dtoList.add(personajeEntity2DTO(aux));
+            dtoList.add(personajeEntity2TinyDTO(aux));
         }
         return dtoList;
     }

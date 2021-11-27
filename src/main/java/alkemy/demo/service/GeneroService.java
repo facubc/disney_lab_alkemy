@@ -18,20 +18,20 @@ public class GeneroService {
     @Autowired
     private GeneroRepository generoRepository;
 
-    public GeneroDTO registrar(GeneroDTO dto) {
+    public GeneroDTO save(GeneroDTO dto) {
         Genero genero = generoMapper.generoDTO2Entity(dto);
         Genero generoGuardado = generoRepository.save(genero);
         GeneroDTO resultado = generoMapper.generoEntity2DTO(generoGuardado);
         return resultado;
     }
 
-    public List<GeneroDTO> listarTodo() {
+    public List<GeneroDTO> findAll() {
         List<Genero> generos = generoRepository.findAll();
         List<GeneroDTO> resultado = generoMapper.generoEntity2DTOList(generos);
         return resultado;
     }
 
-    public GeneroDTO modificar(String id, GeneroDTO dto) {
+    public GeneroDTO update(String id, GeneroDTO dto) {
         Optional<Genero> respuesta = generoRepository.findById(id);
         GeneroDTO resultado = new GeneroDTO();
         if (respuesta.isPresent()) {
@@ -45,7 +45,7 @@ public class GeneroService {
         return resultado;
     }
 
-    public void borrarGenero(String id) {
+    public void deleteById(String id) {
         generoRepository.deleteById(id);
     }
 

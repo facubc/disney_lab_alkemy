@@ -23,27 +23,27 @@ public class GeneroController {
     @Autowired
     GeneroService generoService;
     
-    @PostMapping
-    public ResponseEntity<GeneroDTO>guardar(@RequestBody GeneroDTO genero){
-        GeneroDTO generoGuardado = generoService.registrar(genero);
-        return ResponseEntity.status(HttpStatus.CREATED).body(generoGuardado);
-    }
-    
-    @GetMapping
-    public ResponseEntity<List<GeneroDTO>> listar(){
-        List<GeneroDTO> generosDTO = generoService.listarTodo();
+    @GetMapping("/genres")
+    public ResponseEntity<List<GeneroDTO>> getAll(){
+        List<GeneroDTO> generosDTO = generoService.findAll();
         return ResponseEntity.ok().body(generosDTO);
-    }
+    }    
+    
+    @PostMapping
+    public ResponseEntity<GeneroDTO> save(@RequestBody GeneroDTO genero){
+        GeneroDTO generoGuardado = generoService.save(genero);
+        return ResponseEntity.status(HttpStatus.CREATED).body(generoGuardado);
+    }    
     
     @PutMapping("/{id}")
-    public ResponseEntity<GeneroDTO> modificar(@PathVariable String id, @RequestBody GeneroDTO dto){
-        GeneroDTO genero = generoService.modificar(id, dto);
+    public ResponseEntity<GeneroDTO> update(@PathVariable String id, @RequestBody GeneroDTO dto){
+        GeneroDTO genero = generoService.update(id, dto);
         return ResponseEntity.ok().body(genero);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> borrar(@PathVariable String id){
-        generoService.borrarGenero(id);
+    public ResponseEntity<Void> hardDelete(@PathVariable String id){
+        generoService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     

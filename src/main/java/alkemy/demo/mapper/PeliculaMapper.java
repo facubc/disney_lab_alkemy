@@ -2,6 +2,7 @@
 package alkemy.demo.mapper;
 
 import alkemy.demo.DTO.PeliculaDTO;
+import alkemy.demo.DTO.PeliculaTinyDTO;
 import alkemy.demo.entity.Pelicula;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +34,19 @@ public class PeliculaMapper {
         return dto;
     }
     
+    public PeliculaTinyDTO peliculEntity2TinyDTO(Pelicula pelicula){
+        PeliculaTinyDTO dto = new PeliculaTinyDTO();        
+        dto.setTitulo(pelicula.getTitulo());
+        dto.setImagen(pelicula.getImagen());
+        dto.setCreado(pelicula.getCreado());
+        return dto;
+    }
+    
     //todo para modificar a list
-    public List<PeliculaDTO> peliculaEntity2DTOList(List<Pelicula> peliculas){
-        List<PeliculaDTO> dtoList = new ArrayList<>();
+    public List<PeliculaTinyDTO> peliculaEntity2DTOList(List<Pelicula> peliculas){
+        List<PeliculaTinyDTO> dtoList = new ArrayList<>();
         for (Pelicula pelicula : peliculas) {
-            dtoList.add(peliculaEntity2DTO(pelicula));
+            dtoList.add(peliculEntity2TinyDTO(pelicula));
         }
         return dtoList;
     }
