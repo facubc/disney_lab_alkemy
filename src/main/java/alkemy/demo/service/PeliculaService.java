@@ -29,9 +29,14 @@ public class PeliculaService {
         return resultado;
     }
     
-//    public List<PeliculaDTO> listarTodo(P){
-//        List<Pelicula> peliculas = peliculaRepository.findAll();
-//        List<PeliculaDTO> resultado = peliculaMapper.peliculaDTO2Entity();
-//        return resultado;
-//    }
+    public List<PeliculaDTO> listarTodo(){
+        List<Pelicula> peliculas = peliculaRepository.findAll();
+        List<PeliculaDTO> resultado = peliculaMapper.peliculaDTO2EntityList(peliculas);
+        return resultado;
+    }
+    
+    public void borrarPelicula(String id){
+        peliculaRepository.deleteById(id);
+    }
+    
 }

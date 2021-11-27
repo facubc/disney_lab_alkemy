@@ -3,11 +3,15 @@ package alkemy.demo.mapper;
 
 import alkemy.demo.DTO.PeliculaDTO;
 import alkemy.demo.entity.Pelicula;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PeliculaMapper {
     
+    
+    //transforma DTO a Entidad
     public Pelicula peliculaDTO2Entity(PeliculaDTO dto){
         Pelicula pelicula = new Pelicula();
         pelicula.setTitulo(dto.getTitulo());
@@ -20,6 +24,7 @@ public class PeliculaMapper {
     
     public PeliculaDTO peliculaEntity2DTO(Pelicula pelicula){
         PeliculaDTO dto = new PeliculaDTO();
+        dto.setId(pelicula.getId());
         dto.setTitulo(pelicula.getTitulo());
         dto.setImagen(pelicula.getImagen());
         dto.setCalificacion(pelicula.getCalificacion());
@@ -29,14 +34,12 @@ public class PeliculaMapper {
     }
     
     //todo para modificar a list
-    public Pelicula peliculaDTO2EntityList(PeliculaDTO dto){
-        Pelicula pelicula = new Pelicula();
-        pelicula.setTitulo(dto.getTitulo());
-        pelicula.setImagen(dto.getImagen());
-        pelicula.setCalificacion(dto.getCalificacion());
-        pelicula.setCreado(dto.getCreado());
-        pelicula.setPersonajes(dto.getPersonajes());
-        return pelicula;
+    public List<PeliculaDTO> peliculaDTO2EntityList(List<Pelicula> peliculas){
+        List<PeliculaDTO> dtoList = new ArrayList<>();
+        for (Pelicula pelicula : peliculas) {
+            dtoList.add(peliculaEntity2DTO(pelicula));
+        }
+        return dtoList;
     }
     
 }

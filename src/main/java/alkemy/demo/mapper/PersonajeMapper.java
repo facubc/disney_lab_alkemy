@@ -11,6 +11,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonajeMapper {
     
+    /**
+    * personajeDTO2Entity 
+    * transforma DTO a Entidad    
+    * @param dto recibe Objeto de tipo DTO
+    * @return devuelve Objeto de tipo Personaje
+    */
     public Personaje personajeDTO2Entity(PersonajeDTO dto){
         Personaje personaje = new Personaje();
         personaje.setNombre(dto.getNombre());
@@ -22,6 +28,8 @@ public class PersonajeMapper {
         return personaje;
     }
     
+    
+    //transforma Entidad a DTO
     public PersonajeDTO personajeEntity2DTO(Personaje personaje){
         PersonajeDTO dto = new PersonajeDTO();
         dto.setId(personaje.getId());
@@ -34,6 +42,7 @@ public class PersonajeMapper {
         return dto;
     }
     
+    //devuelve lista de DTO
     public List<PersonajeDTO> personajeDTO2EntityList(List<Personaje> personajes){
         List<PersonajeDTO> dtoList = new ArrayList<>();
         for (Personaje aux : personajes) {
