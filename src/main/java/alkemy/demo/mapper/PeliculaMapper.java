@@ -34,7 +34,7 @@ public class PeliculaMapper {
     }
     
     //todo para modificar a list
-    public List<PeliculaDTO> peliculaDTO2EntityList(List<Pelicula> peliculas){
+    public List<PeliculaDTO> peliculaEntity2DTOList(List<Pelicula> peliculas){
         List<PeliculaDTO> dtoList = new ArrayList<>();
         for (Pelicula pelicula : peliculas) {
             dtoList.add(peliculaEntity2DTO(pelicula));

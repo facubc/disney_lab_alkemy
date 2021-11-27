@@ -27,7 +27,7 @@ public class PersonajeService {
     
     public List<PersonajeDTO> listarTodo(){
         List<Personaje> personajes = personajeRepository.findAll();
-        List<PersonajeDTO> resultado = personajeMapper.personajeDTO2EntityList(personajes);
+        List<PersonajeDTO> resultado = personajeMapper.personajeEntity2DTOList(personajes);
         return resultado;
     }
     

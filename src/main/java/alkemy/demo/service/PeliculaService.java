@@ -31,7 +31,7 @@ public class PeliculaService {
     
     public List<PeliculaDTO> listarTodo(){
         List<Pelicula> peliculas = peliculaRepository.findAll();
-        List<PeliculaDTO> resultado = peliculaMapper.peliculaDTO2EntityList(peliculas);
+        List<PeliculaDTO> resultado = peliculaMapper.peliculaEntity2DTOList(peliculas);
         return resultado;
     }
     

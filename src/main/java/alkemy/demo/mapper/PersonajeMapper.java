@@ -43,7 +43,7 @@ public class PersonajeMapper {
     }
     
     //devuelve lista de DTO
-    public List<PersonajeDTO> personajeDTO2EntityList(List<Personaje> personajes){
+    public List<PersonajeDTO> personajeEntity2DTOList(List<Personaje> personajes){
         List<PersonajeDTO> dtoList = new ArrayList<>();
         for (Personaje aux : personajes) {
             dtoList.add(personajeEntity2DTO(aux));
